@@ -1,0 +1,51 @@
+{
+  "name": "@trendmicro/node-red-conformity",
+  "version": "0.1.0",
+  "description": "Trend Micro Conformity nodes for Node-RED",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "node-red": {
+    "nodes": {
+      "list integrations": "conformity/listallaccounts.js"
+    }
+  },
+  "repository": "github:TrendAndrew/node-red-conformity",
+  "author": {
+    "name": "Andrew Longhorn",
+    "email": "Andrew_Longhorn@TrendMicro.com",
+    "url": "https://www.linkedin.com/in/andrewlonghorn/"
+  },
+  "contributors": [
+    {
+      "name": "Andrew Longhorn",
+      "email": "Andrew_Longhorn@TrendMicro.com",
+      "url": "https://www.linkedin.com/in/andrewlonghorn/"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://flows.nodered.org/node/node-red-conformity",
+  "bugs": "https://github.com/TrendAndrew/node-red-conformity/issues",
+  "dependencies": {
+    "async": "^3.2.4",
+    "request": "^2.88.2",
+    "uuid": "^8.3.2",
+    "@trendmicro/node-red-cloudone" : "0.1.0"
+  },
+  "keywords": [
+    "trendmicro",
+    "cloudone",
+    "conformity",
+    "security",
+    "node-red",
+    "threat",
+    "automation"
+  ],
+  "maintainers": [
+    {
+      "name": "Andrew Longhorn",
+      "email": "Andrew_Longhorn@TrendMicro.com"
+    }
+  ]
+}

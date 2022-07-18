@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    RED.nodes.registerType('list all accounts', {
+        category: 'conformity',
+        color: '#F0F3F5',
+        defaults: {
+            name: { value : "" },
+            cloudone: { type: 'cloudone service', required: true }
+        },
+        inputs: 1,
+        outputs: 1,
+        inputLabels: "trigger",
+        outputLabels: "json",
+        paletteLabel: 'List All Accounts',
+        icon: "trendmicro.png",
+        label: function() {
+            return this.name || 'List All Accounts';
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="list all accounts">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-cloudone"><i class="fa fa-server"></i> Service</label>
+        <input type="text" id="node-input-cloudone" placeholder="cloudone">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="list all accounts">
+    <p>todo: https://cloudone.trendmicro.com/docs/conformity/api-reference/tag/Accounts</p>
+</script>
