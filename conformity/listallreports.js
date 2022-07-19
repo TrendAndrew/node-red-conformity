@@ -1,7 +1,7 @@
 
 module.exports = function(RED) {
 
-    function ListAllAccounts(config) {
+    function ListAllReports(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
@@ -10,7 +10,7 @@ module.exports = function(RED) {
         node.on('input', function(msg) {
             node._cloudone.call(node, {
                 method: "GET",
-                uri: "https://conformity.us-1.cloudone.trendmicro.com/api/accounts",
+                uri: "https://conformity.us-1.cloudone.trendmicro.com/api/reports",
                 headers: {
                     'Api-Version': 'v1',
                     'Content-Type': 'application/vnd.api+json'
@@ -29,5 +29,5 @@ module.exports = function(RED) {
             });
         });
     }
-    RED.nodes.registerType("list all accounts", ListAllAccounts);
+    RED.nodes.registerType("list all reports", ListAllReports);
 };
