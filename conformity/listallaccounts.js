@@ -10,7 +10,11 @@ module.exports = function(RED) {
         node.on('input', function(msg) {
             node._cloudone.call(node, {
                 method: "GET",
-                uri: "https://conformity.us-1.cloudone.trendmicro.com/api/accounts",
+                uri: {
+                    service: 'conformity',
+                    region: (msg && msg.payload && msg.payload.region) || undefined,
+                    path: "accounts"
+                },
                 headers: {
                     'Api-Version': 'v1',
                     'Content-Type': 'application/vnd.api+json'

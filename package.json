@@ -1,6 +1,6 @@
 {
-  "name": "@trendmicro/node-red-conformity",
-  "version": "0.1.0",
+  "name": "@trendmicro-cloudone/node-red-conformity",
+  "version": "0.2.0",
   "description": "Trend Micro Conformity nodes for Node-RED",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,9 @@
   "node-red": {
     "nodes": {
       "list all accounts": "conformity/listallaccounts.js",
-      "list all reports": "conformity/listallreports.js"
+      "list all groups": "conformity/listallgroups.js",
+      "list all reports": "conformity/listallreports.js",
+      "download report": "conformity/downloadreport.js"
     }
   },
   "repository": "github:TrendAndrew/node-red-conformity",
@@ -32,7 +34,7 @@
     "async": "^3.2.4",
     "request": "^2.88.2",
     "uuid": "^8.3.2",
-    "@trendmicro/node-red-cloudone" : "0.1.0"
+    "@trendmicro-cloudone/node-red-core" : "^0.3.0"
   },
   "keywords": [
     "trendmicro",

@@ -1,7 +1,7 @@
 
 module.exports = function(RED) {
 
-    function ListAllReports(config) {
+    function DownloadReport(config) {
         RED.nodes.createNode(this, config);
         const node = this;
 
@@ -9,12 +9,16 @@ module.exports = function(RED) {
  
         node.on('input', function(msg) {
 
+            const reportId = msg.payload.reportId || config.reportId;
+            const entityId = msg.payload.entityId || config.entityId;
+            const reportType = msg.payload.reportType || config.reportType || 'csv';
+            
             const params = {
                 method: "GET",
                 uri: {
                     service: 'conformity',
                     region: (msg && msg.payload && msg.payload.region) || undefined,
-                    path: "reports"
+                    path: 'reports/' + reportId + '/' + entityId + '/' + reportType
                 },
                 headers: {
                     'Api-Version': 'v1',
@@ -22,26 +26,18 @@ module.exports = function(RED) {
                 }
             };
 
-            if (config.accountId || config.groupId) {
-                params.qs = {
-                    accountId : config.accountId,
-                    //groupId : config.groupId
-                };
-            }
-
             node._cloudone.call(node, params, null, function(body) {
                 console.log(body);
-                if (!body || !body.data) {
-                    node.status({ fill:"red", shape:"ring", text:"Response Error, Missing 'data'." });
+                if (!body || !body.url) {
+                    node.status({ fill:"red", shape:"ring", text:"Response Error, Missing 'url'." });
                     return;
                 }
-                const count = body.data.length;
-                node.status({ fill:"green", shape:"dot", text:"Listed " + count + ' report' + (count === 1 ? '' : 's')});
+                node.status({ fill:"green", shape:"dot", text:'Retrieved report url'});
                 node.send({
-                    payload: body.data
+                    payload: body
                 });
             });
         });
     }
-    RED.nodes.registerType("list all reports", ListAllReports);
+    RED.nodes.registerType("download report", DownloadReport);
 };

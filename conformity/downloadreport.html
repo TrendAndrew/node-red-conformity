@@ -1,0 +1,71 @@
+<script type="text/javascript">
+    RED.nodes.registerType('download report', {
+        category: 'conformity',
+        color: '#F0F3F5',
+        defaults: {
+            name: { value : '' },
+            cloudone: { type: 'cloudone service', required: true },
+            reportId: { value: '', required: false },
+            entityId: { value: '', required: false },
+            reportType: { value: 'csv', required: true }
+        },
+        inputs: 1,
+        outputs: 1,
+        inputLabels: "trigger",
+        outputLabels: "json",
+        paletteLabel: 'Download Report',
+        icon: "trendmicro.png",
+        label: function() {
+            return this.name || 'Download Report';
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="download report">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-cloudone"><i class="fa fa-server"></i> Service</label>
+        <input type="text" id="node-input-cloudone" placeholder="cloudone">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-reportId"><i class="fa fa-user"></i> Report Id</label>
+        <input type="text" id="node-input-reportId" placeholder="(Optional)">
+    </div>
+    <div class="form-tips">Tip: You can also specify the report id with &lt;msg.payload.reportId&gt;.</div>
+
+    <div class="form-row"></div>
+    <div class="form-row">
+        <label for="node-input-entityId"><i class="fa fa-user"></i> Entity Id</label>
+        <input type="text" id="node-input-entityId" placeholder="(Optional)">
+    </div>
+    <div class="form-tips">Tip: You can also specify the entity id with &lt;msg.payload.entityId&gt;.</div>
+
+    <div class="form-row"></div>
+    <div class="form-row">
+        <label for="node-config-input-region"><i class="fa fa-globe"></i> Report Type</label>
+        <select id="node-config-input-region">
+            <option value='csv'>csv</option>
+            <option value='pdf'>pdf</option>
+            <option value='xlsx'>xlsx</option>
+        </select>
+    </div>
+    <div class="form-tips">Tip: You can also specify the report type with &lt;msg.payload.reportType&gt;.</div>
+
+</script>
+
+<script type="text/x-red" data-help-name="download report">
+    <h3>Download Report</h3>
+    <p>This end point allows you to download the report using a report-download-endpoint link.</p>
+    
+    <h3>Reference</h3>
+    https://cloudone.trendmicro.com/docs/conformity/api-reference/tag/Reports#paths/~1reports~1{reportId}~1{entityId}~1{type}/get
+
+    <h3>Donate to show your support or gratitude</h3>
+    <p>Donations support the open source community and help authors continue to support these projects, please feel free to donate here.
+        <a target="donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JUYN6NBFELTC2&source=url"><img src="https://img.shields.io/badge/donate-PayPal-green.svg"></a></p>
+</script>

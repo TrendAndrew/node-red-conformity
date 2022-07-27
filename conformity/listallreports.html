@@ -3,8 +3,10 @@
         category: 'conformity',
         color: '#F0F3F5',
         defaults: {
-            name: { value : "" },
-            cloudone: { type: 'cloudone service', required: true }
+            name: { value : '' },
+            cloudone: { type: 'cloudone service', required: true },
+            accountId: { value: '', required: false },
+            groupId: { value: '', required: false }
         },
         inputs: 1,
         outputs: 1,
@@ -28,8 +30,43 @@
         <label for="node-input-cloudone"><i class="fa fa-server"></i> Service</label>
         <input type="text" id="node-input-cloudone" placeholder="cloudone">
     </div>
+
+    <div class="form-row">
+        <label for="node-input-accountId"><i class="fa fa-user"></i> Account Id</label>
+        <input type="text" id="node-input-accountId" placeholder="(Optional)">
+    </div>
+    <div class="form-tips">Tip: You can also specify the account id with &lt;msg.payload.accountId&gt;.</div>
+
+    <div class="form-row"></div>
+    <div class="form-row">
+        <label for="node-input-groupId"><i class="fa fa-user"></i> Group Id</label>
+        <input type="text" id="node-input-groupId" placeholder="(Optional)">
+    </div>
+    <div class="form-tips">Tip: You can also specify the group id with &lt;msg.payload.groupId&gt;.</div>
+
 </script>
 
 <script type="text/x-red" data-help-name="list all reports">
-    <p>todo: https://cloudone.trendmicro.com/docs/conformity/api-reference/tag/Reports#paths/~1reports/get</p>
+    <h3>List All Reports</h3>
+    <p>This end point allows you to query all reports that you have access to, based on the query parameters provided.</p>
+    <p>Administrator, power user, and read-only users have access to all reports. Includes account, group and organisation reports.
+        
+        Users with custom role (full access / read only) only have access to account reports that they have been granted access to.
+        
+        Users with custom role (no access) do not have access to any reports in the account/s that they have been denied access to.
+        
+        Please note only up to one year's worth of reports will be returned.
+        
+        Reports will be ordered based on the report's creation date.
+        
+        If no parameters are provided, the end point will retrieve reports associated with the organisation, i.e. reports that have been generated for all accounts within your organisation.
+        
+        If both accountId and groupId are present in the query string, only account reports will be returned.</p>
+
+    <h3>Reference</h3>
+    https://cloudone.trendmicro.com/docs/conformity/api-reference/tag/Reports#paths/~1reports/get
+
+    <h3>Donate to show your support or gratitude</h3>
+    <p>Donations support the open source community and help authors continue to support these projects, please feel free to donate here.
+        <a target="donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JUYN6NBFELTC2&source=url"><img src="https://img.shields.io/badge/donate-PayPal-green.svg"></a></p>
 </script>
